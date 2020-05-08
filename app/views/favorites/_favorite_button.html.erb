@@ -1,0 +1,13 @@
+<% unless current_user == micropost.user %>
+  <% if current_user.already_likes?(micropost) %>
+    <%= form_with model: current_user.favorites.find_by(micropost_id: micropost.id), local: true, method: :delete do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'いいねを解除', class: 'btn btn-secondary btn-sm' %>
+    <% end %>
+  <% else %>
+    <%= form_with model: current_user.favorites.build, local:true do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'いいね！', class: 'btn btn-success btn-sm' %>
+    <% end %>
+  <% end %>
+<% end %>
