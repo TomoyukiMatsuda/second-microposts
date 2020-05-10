@@ -2,10 +2,14 @@
   <aside class="col-sm-4">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><%= @user.name %></h3>
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
       <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <h3 class="card-title"><%= @user.name %></h3>
+        <span><%= @user.age %> 歳</span>
+      </div>
+      <div class="card-footer">
+        <p class="card-text"><%= @user.profile %></p>
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>
