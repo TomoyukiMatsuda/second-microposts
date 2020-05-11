@@ -1,0 +1,14 @@
+<% comments.each do |comment| %>
+    <li class="media mb-3">
+      <div class="media-body">
+        <div>
+          <p><%= comment.content %></p>
+        </div>
+        <div>
+          <% if current_user == comment.user %>
+            <%= link_to "コメント削除", "/microposts/#{comment.micropost_id}/comments/#{comment.id}", method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>

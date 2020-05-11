@@ -1,6 +1,14 @@
 class MicropostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user
+  before_action :correct_user, only: :destroy
+
+  def show
+    @micropost = Micropost.find(params[:id])
+    @comments = @micropost.comments.order(id: :desc).page(params[:page])
+    if logged_in?
+      @comment = current_user.comments.build
+    end 
+  end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)

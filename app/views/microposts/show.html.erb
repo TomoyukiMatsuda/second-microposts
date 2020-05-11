@@ -1,0 +1,22 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <p>投稿者 : <%= @micropost.user.name %></p>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title"><%= @micropost.content %></h3>
+      </div>
+    </div><br>
+    <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, class: 'form-control', rows: 3 %>
+      </div>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= f.submit 'コメント投稿', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </aside>
+  <div class="col-sm-8">
+    <%= render 'comments/comments', comments: @comments %>
+  </div>
+</div>
