@@ -3,6 +3,7 @@
     <div class="card">
       <div class="card-header">
         <p>投稿者 : <%= @micropost.user.name %></p>
+        <p>投稿日時 : <%= @micropost.created_at %></p>
       </div>
       <div class="card-body">
         <h3 class="card-title"><%= @micropost.content %></h3>
